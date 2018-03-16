@@ -18,8 +18,8 @@ unzip("./Data/UCI_HAR_Data.zip", exdir = "./Data", overwrite = TRUE)
 #clean up 
 file.remove("./Data/UCI_HAR_Data.zip")
 
-## read in data ------------------------------------
-## test
+## read in data
+## test-------------------------------------------------------------------------
 setwd("./Data/UCI HAR Dataset/test/")
 
 subject_test <- read_table("subject_test.txt", 
@@ -31,7 +31,7 @@ x_test <- read_table("X_test.txt",
 y_test <- read_table("Y_test.txt",
                      col_names = FALSE)
 
-## train
+## train------------------------------------------------------------------------
 setwd("../train/")
 
 subject_train <- read_table("subject_train.txt", 
@@ -43,7 +43,7 @@ x_train <- read_table("X_train.txt",
 y_train <- read_table("Y_train.txt",
                      col_names = FALSE)
 
-## metadata
+## labels and feature names-----------------------------------------------------
 setwd("..")
 
 # labels for activity codes
@@ -59,39 +59,58 @@ features <- features %>%
   mutate(X1 = gsub(".* ", "", X1)) %>% ##remove number from name
   unlist %>% unname
 
-## clean field names and mash data together! -------------------------
+## join everything together-----------------------------------------------------
 
-# get subject field
+# bind subject data
 subject <- bind_rows(subject_train, subject_test)
 colnames(subject) <- "subject"
 
-# get x data: only keep mean() and std()
+# bind x data
 x <- bind_rows(x_train, x_test) 
+colnames(x) <- features
 
-keep_vars <- grepl("mean\\(\\)", features) | grepl("std\\(\\)", features)
-features <- features[keep_vars]
-
-features %>% 
-  gsub("t", "time_", .) %>%
-  gsub("f","freq_", .)
-
-x <- x[,keep_vars]
-
-# get y data: replace codes with meaningful values
+# bind activity labels and replace with activity labels 
 y <- bind_rows(y_train, y_test)
 colnames(y) <- "activity_code"
 
-y <- left_join(y,activity_labels, by = "activity_code") %>% select(-activity_code)
+y <- y %>% left_join(activity_labels, by = "activity_code") %>% select(activity)
 
-# bind together
+# bind it all together
 uci_har <- bind_cols(subject, y, x)
 
-colnames(uci_har) %>% tibble %>% print(n=1000)
+## clean it all up -------------------------------------------------------------
+rm(list = ls()[!ls() %in% "uci_har"])
 
-## remove unnecessary fields and clean up feature names ---------------
+## we only want subject, activity, and the mean and std fields
+field_names <- colnames(uci_har)
+features_keep <- which(grepl("mean\\(\\)",field_names) | grepl("std\\(\\)",field_names))
 
+uci_har <- uci_har %>% select(subject, activity, features_keep)
 
+## clean up the field names
 
-## clean up folders
+colnames(uci_har) <- field_names %>% 
+  .[features_keep] %>%
+  sub("^t", "time", .) %>%
+  sub("^f","freq", .) %>%
+  sub("BodyBody", "Body", .) %>%
+  gsub("-", "", .) %>%
+  sub("mean\\(\\)", "Mean",.) %>%
+  sub("std\\(\\)", "StdDev", .) %>%
+  c("subject", "activity", .)
+
+## summarised dataset ----------------------------------------------------------
+
+uci_har_summarised <- uci_har %>% 
+  group_by(subject, activity) %>%
+  summarise_all(funs(mean(., na.rm = TRUE))) 
+
+## write to output folder-------------------------------------------------------
 setwd("../..")
+
+write_csv(uci_har, "./Output/uci_har.csv")
+write_csv(uci_har_summarised, "./Output/uci_har_summarise.csv")
+
+## clean up folders and workspace
+rm(list=ls())
 unlink("./Data/UCI HAR Dataset", recursive = TRUE)
