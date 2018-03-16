@@ -109,7 +109,7 @@ uci_har_summarised <- uci_har %>%
 setwd("../..")
 
 write_csv(uci_har, "./Output/uci_har.csv")
-write_csv(uci_har_summarised, "./Output/uci_har_summarise.csv")
+write_csv(uci_har_summarised, "./Output/uci_har_summarised.csv")
 
 ## clean up folders and workspace
 rm(list=ls())
