@@ -14,6 +14,8 @@ library(tidyverse)
 
 This is a datakey for an abbreviated dataset from the University of California-Irvine's Human Activity Recognition database. [More information on the UCI HAR database and specific fields can be found here.](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) Downloading the data folder from this website will give you access to "features_info.txt" which contains more information on specific variables and how they were derived. This data key is intended as a summary of this file. This key can be read in two parts. The first part contains a key for interpretting elements of the field names and the second part contains the raw field names in the dataset.
 
+## Elements table 
+
 ```{r}
 Element<- c("time",
       "freq",
@@ -43,6 +45,7 @@ df <- data.frame(Element, Description)
 knitr::kable(df)
 ```
 
+## Variable Names
 
 ```{r}
 uci_data <- read_csv("./uci_har.csv", n_max = 100 )

@@ -11,6 +11,9 @@ summary of this file. This key can be read in two parts. The first part
 contains a key for interpretting elements of the field names and the
 second part contains the raw field names in the dataset.
 
+Elements table
+--------------
+
 <table>
 <thead>
 <tr class="header">
@@ -65,6 +68,9 @@ second part contains the raw field names in the dataset.
 </tr>
 </tbody>
 </table>
+
+Variable Names
+--------------
 
 <table>
 <thead>
