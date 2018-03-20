@@ -1,0 +1,51 @@
+---
+title: "UCI HAR Datakey"
+author: "John Goodwin"
+date: "March 19, 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message=FALSE)
+library(tidyverse)
+```
+
+### Summary:
+
+This is a datakey for an abbreviated dataset from the University of California-Irvine's Human Activity Recognition database. [More information on the UCI HAR database and specific fields can be found here.](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+Smartphones) Downloading the data folder from this website will give you access to "features_info.txt" which contains more information on specific variables and how they were derived. This data key is intended as a summary of this file. This key can be read in two parts. The first part contains a key for interpretting elements of the field names and the second part contains the raw field names in the dataset.
+
+```{r}
+Element<- c("time",
+      "freq",
+      "Body",
+      "Gravity",
+      "Acc",
+      "Gyro",
+      "StdDev",
+      "Mean",
+      "Mag",
+      "Jerk",
+      "XYZ")
+
+Description <- c("time domain signals captured at rate of 50 Hz",
+                 "frequency domain signals",
+                 "body acceleration signal",
+                 "gravity acceleration signal",
+                 "measurement from accelerometer",
+                 "measurement from gyroscope",
+                 "standard deviation value",
+                 "mean value",
+                 "magnitude of three dimensional signals",
+                 "jerk signals",
+                 "direction X, Y, or Z")
+df <- data.frame(Element, Description)
+
+knitr::kable(df)
+```
+
+
+```{r}
+uci_data <- read_csv("./Output/uci_har.csv", n_max = 100 )
+knitr::kable(x = colnames(uci_data), col.names = "UCI HAR Variables")
+```
+
