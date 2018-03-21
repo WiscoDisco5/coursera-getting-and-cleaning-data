@@ -7,12 +7,16 @@ here.](http://archive.ics.uci.edu/ml/datasets/Human+Activity+Recognition+Using+S
 Downloading the data folder from this website will give you access to
 "features\_info.txt" which contains more information on specific
 variables and how they were derived. This data key is intended as a
-summary of this file. This key can be read in two parts. The first part
-contains a key for interpretting elements of the field names and the
-second part contains the raw field names in the dataset.
+summary of this file. The subject field is an identifier for each
+participant in the study. The activity field gives the participant's
+motion type. The rest of the fields are features providing descriptions
+of the subjects physical movement. The tables below provide more
+information on the features fields. The first part contains a key for
+interpretting elements of the field names and the second part contains
+the raw field names in the dataset.
 
-Elements table
---------------
+Feature Elements table
+----------------------
 
 <table>
 <thead>

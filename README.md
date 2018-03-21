@@ -12,3 +12,5 @@ The resulting datasets can be reproduced in your working directory by running re
 6. The column names are cleaned up by removing special characters and generally making variable names more clear.
 7. A summarised dataset is created. This dataset has grouped means by subject and activity.
 8. Datasets are saved to your working directory. Workspace and working directory are cleared.
+
+Read the datakey.md for more information on the variables.
