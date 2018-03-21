@@ -1,2 +1,0 @@
-"0","uci_data <- read_csv(""./Output/uci_har.csv"", n_max = 100 )"
-"0","knitr::kable(x = colnames(uci_data), col.names = ""UCI HAR Variables"")"
