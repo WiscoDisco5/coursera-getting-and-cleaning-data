@@ -5,10 +5,10 @@ This repo is the final project for the Getting and Cleaning Data coursera course
 The resulting datasets can be reproduced in your working directory by running read_uci_har.R. This file does the following:
 
 1. Downloads the zipped data from [this link](https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip) and unzips the data in your working directory.
-2. Reads in the subject ID, Y value (activity), and X values (features) for both the train and testing.
+2. Reads in the subject ID, Y value (activity), and X values (features) for both the training and testing data.
 3. Reads in the feature names and a table for translating the activity codes into meaningful values.
 4. After replacing the activity codes with meaningful values, the data is all bound together.
 5. The dataset is limited to values of interest: subject, actvity and the features containing the mean and standard deviations.
 6. The column names are cleaned up by removing special characters and generally making variable names more clear.
-7. A summarised is created. This dataset has grouped means by subject and activity.
-8. Datasets are saved to working directory. Workspace and working directory are cleared.
+7. A summarised dataset is created. This dataset has grouped means by subject and activity.
+8. Datasets are saved to your working directory. Workspace and working directory are cleared.
