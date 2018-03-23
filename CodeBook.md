@@ -1,4 +1,5 @@
-### Summary:
+Summary:
+--------
 
 This is a datakey for an abbreviated dataset from the University of
 California-Irvine's Human Activity Recognition database. [More
@@ -10,8 +11,8 @@ variables and how they were derived. This data key is intended as a
 summary of this file. The subject field is an identifier for each
 participant in the study. The activity field gives the participant's
 motion type. The rest of the fields are features providing descriptions
-of the subjects physical movement. The tables below provide more
-information on the features fields. The first part contains a key for
+of the subjects' physical movements. The tables below provide more
+information on the feature fields. The first part contains a key for
 interpretting elements of the field names and the second part contains
 the raw field names in the dataset.
 
